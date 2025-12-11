@@ -1,8 +1,8 @@
-# Finance & Tax Compliance System
+# Finance Tax IKU (finance_tax_iku)
 
-A comprehensive financial management system specifically designed for Indonesian PT Companies (Perseroan Terbatas). The system implements double-entry bookkeeping principles and provides complete tax compliance features aligned with Indonesian regulations.
+Finance Tax Application Website using Bun Framework - A comprehensive financial management system specifically designed for Indonesian PT Companies (Perseroan Terbatas). The system implements double-entry bookkeeping principles and provides complete tax compliance features aligned with Indonesian regulations.
 
-## Features
+## 🎯 Features
 
 - **Double-Entry Bookkeeping**: Complete accounting system with automatic balance validation
 - **Indonesian Tax Compliance**: VAT calculations and tax reporting for Indonesian regulations
@@ -11,7 +11,7 @@ A comprehensive financial management system specifically designed for Indonesian
 - **Data Import/Export**: Support for CSV, Excel, and XML formats
 - **Real-time Dashboard**: Financial KPIs and performance indicators
 
-## Technology Stack
+## 🚀 Technology Stack
 
 ### Backend
 - **Runtime**: Bun v1.1+
@@ -25,7 +25,7 @@ A comprehensive financial management system specifically designed for Indonesian
 - **State Management**: Zustand
 - **Forms**: React Hook Form with Zod validation
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 ├── backend/                 # Backend API (ElysiaJS + Drizzle)
@@ -47,7 +47,7 @@ A comprehensive financial management system specifically designed for Indonesian
 └── package.json           # Root workspace configuration
 ```
 
-## Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
 
@@ -59,8 +59,8 @@ A comprehensive financial management system specifically designed for Indonesian
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd finance-tax-compliance
+git clone https://github.com/Askarastudio/finance_tax_iku.git
+cd finance_tax_iku
 ```
 
 2. Install dependencies:
@@ -102,20 +102,9 @@ bun run dev:frontend
 - `bun run db:migrate` - Run database migrations
 - `bun run db:studio` - Open Drizzle Studio for database management
 
-## Development
+## 🧪 Testing
 
-### Database Management
-
-The project uses Drizzle ORM for database management. Schema definitions are located in `backend/src/db/schema/`.
-
-To make schema changes:
-1. Modify schema files in `backend/src/db/schema/`
-2. Generate migration: `bun run db:generate`
-3. Run migration: `bun run db:migrate`
-
-### Testing
-
-The project includes comprehensive testing:
+The project includes comprehensive testing with **88 passing tests**:
 - Unit tests for business logic
 - Property-based tests for mathematical invariants
 - Integration tests for API endpoints
@@ -126,7 +115,17 @@ Run tests with:
 bun run test
 ```
 
-## Indonesian Compliance Features
+### Test Coverage
+✅ Account management and validation  
+✅ Double-entry bookkeeping  
+✅ Indonesian tax calculations (VAT)  
+✅ Currency conversion accuracy  
+✅ Financial reporting (Balance Sheet, Income Statement)  
+✅ Data import/export validation  
+✅ Role-based access control  
+✅ Audit trail completeness  
+
+## 🇮🇩 Indonesian Compliance Features
 
 This system is specifically designed for Indonesian PT companies and includes:
 
@@ -136,6 +135,17 @@ This system is specifically designed for Indonesian PT companies and includes:
 - **Audit Trails**: Complete activity logging for compliance
 - **Multi-currency**: Support for IDR and foreign currencies
 
-## License
+## 🔧 Development
+
+### Database Management
+
+The project uses Drizzle ORM for database management. Schema definitions are located in `backend/src/db/schema/`.
+
+To make schema changes:
+1. Modify schema files in `backend/src/db/schema/`
+2. Generate migration: `bun run db:generate`
+3. Run migration: `bun run db:migrate`
+
+## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
