@@ -7,6 +7,8 @@ import { ReportController } from './controllers/ReportController';
 import { TaxController } from './controllers/TaxController';
 import { UserController } from './controllers/UserController';
 import { FileController } from './controllers/FileController';
+import { BackupController } from './controllers/BackupController';
+import { DemoAuthController } from './controllers/DemoAuthController';
 
 // Initialize controllers
 const accountController = new AccountController();
@@ -34,7 +36,8 @@ const app = new Elysia()
         { name: 'Transactions', description: 'Double-entry bookkeeping transactions' },
         { name: 'Reports', description: 'Financial reports and statements' },
         { name: 'Tax', description: 'Indonesian tax compliance and calculations' },
-        { name: 'Files', description: 'File upload, processing, and data import/export' }
+        { name: 'Files', description: 'File upload, processing, and data import/export' },
+        { name: 'Backup', description: 'System backup and restoration' }
       ]
     },
   }))
@@ -55,20 +58,24 @@ const app = new Elysia()
     }
   }))
 
+  // Demo authentication (no database required)
+  .use(DemoAuthController)
+
   // API versioning
   .group('/api/v1', (api) => 
     api
       // Setup all controller routes
-      .use((app) => userController.setupRoutes(app))
-      .use((app) => accountController.setupRoutes(app))
-      .use((app) => transactionController.setupRoutes(app))
-      .use((app) => reportController.setupRoutes(app))
-      .use((app) => taxController.setupRoutes(app))
-      .use((app) => fileController.setupRoutes(app))
+      .use(userController.setupRoutes(new Elysia()))
+      .use(accountController.setupRoutes(new Elysia()))
+      .use(transactionController.setupRoutes(new Elysia()))
+      .use(reportController.setupRoutes(new Elysia()))
+      .use(taxController.setupRoutes(new Elysia()))
+      .use(fileController.setupRoutes(new Elysia()))
+      .use(BackupController)
 
       // Global error handling for API routes
-      .onError(({ error, code, path }) => {
-        console.error(`API Error on ${path}:`, error);
+      .onError(({ error, code }) => {
+        console.error('API Error:', error);
         
         // Log error details for debugging
         if (process.env.NODE_ENV === 'development') {
@@ -93,7 +100,6 @@ const app = new Elysia()
             return {
               success: false,
               error: 'Endpoint not found',
-              path,
               timestamp: new Date().toISOString()
             };
           
@@ -119,16 +125,16 @@ const app = new Elysia()
   )
 
   // Global middleware for request logging
-  .onRequest(({ request, path }) => {
+  .onRequest(({ request }) => {
     if (process.env.NODE_ENV === 'development') {
-      console.log(`${request.method} ${path} - ${new Date().toISOString()}`);
+      console.log(`${request.method} ${request.url} - ${new Date().toISOString()}`);
     }
   })
 
   // Global response middleware
-  .onAfterHandle(({ response, path }) => {
-    if (process.env.NODE_ENV === 'development' && path !== '/health') {
-      console.log(`Response sent for ${path} - ${new Date().toISOString()}`);
+  .onAfterHandle(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`Response sent - ${new Date().toISOString()}`);
     }
   })
 
