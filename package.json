@@ -1,0 +1,31 @@
+{
+  "name": "finance-tax-compliance",
+  "version": "1.0.0",
+  "description": "Finance & Tax Compliance System for Indonesian PT Companies",
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "bun run --parallel dev:backend dev:frontend",
+    "dev:backend": "bun --cwd backend run dev",
+    "dev:frontend": "bun --cwd frontend run dev",
+    "build": "bun run build:backend && bun run build:frontend",
+    "build:backend": "bun --cwd backend run build",
+    "build:frontend": "bun --cwd frontend run build",
+    "test": "bun run test:backend && bun run test:frontend",
+    "test:backend": "bun --cwd backend run test",
+    "test:frontend": "bun --cwd frontend run test",
+    "db:generate": "bun --cwd backend run db:generate",
+    "db:migrate": "bun --cwd backend run db:migrate",
+    "db:studio": "bun --cwd backend run db:studio"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  }
+}
